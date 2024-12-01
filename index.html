@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>INPUT ABSEN MOBEL</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /*  */
+    body {
+      background-color: #0c0a0a;
+    }
+    #form-container {
+      width: 300px;
+      margin: 0 auto;
+      background-color: #f1f1f7;
+      border: 2px solid #da0808;
+      border-radius: 10px;
+      padding: 50px;
+    }
+    #form-container h2 {
+      text-align: center;
+      color: #1E90FF;
+    }
+    #form-container input[type="text"], #form-container input[type="date"], #form-container input[type="tel"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 2px solid #f1d0d0;
+      border-radius: 5px;
+    }
+    #form-container input[type="submit"] {
+      background-color: #1E90FF;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #form-container input[type="submit"]:hover {
+      background-color: #004B8D;
+    }
+    #form-container input[type="reset"] {
+      background-color: #1E90FF;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #form-container input[type="reset"]:hover {
+      background-color: #004B8D;
+    }
+    #footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #f7f1f1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="form-container">
+    <h2>ABSEN HARIAN <br>MOBEL INTERIOR</h2>
+    <script type="text/javascript">
+      function startCalc() {
+          interval = setInterval(calc, 1);
+      }
+
+      function calc() {
+          let one = parseFloat(document.autoSumForm.upah.value) || 0;
+          let two = parseFloat(document.autoSumForm.jumlahjamlembur.value) || 0;
+          let tree = parseFloat(document.autoSumForm.setjam.value) || 0;
+
+          // Perhitungan
+          let total = (one * 1) + (one * 1) / 8 * (two * 1) + (one * 1) / 8 * (tree * 1);
+
+          // Membulatkan ke atas
+          total = Math.ceil(total);
+
+          // Menampilkan hasil
+          document.autoSumForm.total.value = total;
+      }
+
+      function stopCalc() {
+          clearInterval(interval);
+      }
+  </script>
+    <!-- akses link script app -->
+    <form name="autoSumForm" action="https://script.google.com/macros/s/AKfycbxac08j8aWg7_EsogeaeKUYvrO6xlQBQ54GCh6Ldsaio3nL-y-6pakokpKNGv0jCZk9/exec" method="post">
+    <!-- end akses  -->
+    <script>
+      $(document).ready(function() {    
+        $("select").change(calculateTime);
+        calculateTime(); // Calculate on page load
+  
+        function calculateTime() {
+          var valuestart = $("select[name='jamawallembur']").val();
+          var valuestop = $("select[name='jamakhirlembur']").val();
+          
+          // Extract hours from the values
+          var startHour = parseInt(valuestart.substring(0, 2), 10);
+          var stopHour = parseInt(valuestop.substring(0, 2), 10);
+  
+          var hourDiff = stopHour - startHour;
+          if (hourDiff < 0) {
+            hourDiff += 24; // Adding 24 hours to handle negative differences
+          }
+          
+          $("#hourDiff").val(hourDiff);
+        }
+      });
+    </script>
+     <input type="text" id="clock" name="clock" readonly>
+    <label for="day">Hari:</label>
+    <input type="text" id="day" name="day" readonly>
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" name="nama" readonly value="Yogi">
+    <label for="nama">Status:</label>
+    <input type="text" id="status" name="status" readonly value="Tetap">
+    <label for="proyek">Proyek:</label>
+    <input type="text" id="proyek" name="proyek" required>
+    <label for="tempat">Tempat:</label>
+    <input type="text" id="tempat" name="tempat" required>
+    <label for="pekerjaan">Pekerjaan:</label>
+    <input type="text" id="pekerjaan" name="pekerjaan" required>
+    <label for="jika">Jika Anda Kerja Lembur Masukan Jam dibawah.</label><br>
+    <label for="jamawallembur">Jam Awal Lembur:</label><br>
+  <select name="jamawallembur">
+            <option value="00:00:00">00:00</option>
+            <option value="01:00:00">01:00</option>
+            <option value="02:00:00">02:00</option>
+            <option value="03:00:00">03:00</option>
+            <option value="04:00:00">04:00</option>
+            <option value="05:00:00">05:00</option>
+            <option value="06:00:00">06:00</option>
+            <option value="07:00:00">07:00</option>
+            <option value="08:00:00">08:00</option>
+            <option value="09:00:00">09:00</option>
+            <option value="10:00:00">10:00</option>
+            <option value="11:00:00">11:00</option>
+            <option value="12:00:00">12:00</option>
+            <option value="13:00:00">13:00</option>
+            <option value="14:00:00">14:00</option>
+            <option value="15:00:00">15:00</option>
+            <option value="16:00:00">16:00</option>
+            <option value="17:00:00">17:00</option>
+            <option value="18:00:00">18:00</option>
+            <option value="19:00:00">19:00</option>
+            <option value="20:00:00">20:00</option>
+            <option value="21:00:00">21:00</option>
+            <option value="22:00:00">22:00</option>
+            <option value="23:00:00">23:00</option>
+  </select><br>
+  <label for="jamakhirlembur">Jam Akhir Lembur:</label><br>
+  <select name="jamakhirlembur">
+            <option value="00:00:00">00:00</option>
+            <option value="01:00:00">01:00</option>
+            <option value="02:00:00">02:00</option>
+            <option value="03:00:00">03:00</option>
+            <option value="04:00:00">04:00</option>
+            <option value="05:00:00">05:00</option>
+            <option value="06:00:00">06:00</option>
+            <option value="07:00:00">07:00</option>
+            <option value="08:00:00">08:00</option>
+            <option value="09:00:00">09:00</option>
+            <option value="10:00:00">10:00</option>
+            <option value="11:00:00">11:00</option>
+            <option value="12:00:00">12:00</option>
+            <option value="13:00:00">13:00</option>
+            <option value="14:00:00">14:00</option>
+            <option value="15:00:00">15:00</option>
+            <option value="16:00:00">16:00</option>
+            <option value="17:00:00">17:00</option>
+            <option value="18:00:00">18:00</option>
+            <option value="19:00:00">19:00</option>
+            <option value="20:00:00">20:00</option>
+            <option value="21:00:00">21:00</option>
+            <option value="22:00:00">22:00</option>
+            <option value="23:00:00">23:00</option>
+  </select>
+  <p><label for="jumlahjamlembur">Total Jam Lembur:</label> 
+  <input type="tel" id="hourDiff" name="jumlahjamlembur" value="" onFocus="startCalc();" onBlur="stopCalc();" readonly></p>
+  <label for="setjam">Jika Anda Kerja Lembur Lebih Setengah Jam Masukan 0.5(pakai titik), Jika Tidak Masukan Angka 0:</label> 
+  <input type="tel" id="setjam" name="setjam" placeholder="0.5" required>
+      <label for="upah">Upah:</label>
+      <input type="text" name="upah" readonly value="70000" onFocus="startCalc();" onBlur="stopCalc();"required>
+      <label for="total">Total:</label> 
+  <input type="text" id="total" name="total" readonly>
+    
+  <input type="submit" value="Simpan Data">
+  <input type="reset" value="Hapus">
+  <h4>ISI ABSEN SETIAP BERES PEKERJAAN</h4>
+  
+    
+  <script>
+    function updateClock() {
+        let now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+        
+        let currentTime = `${hours}:${minutes}:${seconds}`;
+        document.getElementById('clock').value = currentTime;
+    }
+
+    // Update clock immediately and then every second
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+  </form>
+  </div>
+  
+  <script>
+    // Array of days in Indonesian
+    const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+    // Get today's date
+    const today = new Date();
+
+    // Get the day of the week (0-6) from today's date
+    const dayOfWeek = today.getDay();
+
+    // Get the name of the day from the array
+    const dayName = days[dayOfWeek];
+
+    // Set the value of the input field to the name of the day
+    document.getElementById('day').value = dayName;
+</script>
+</body>
+</html>
